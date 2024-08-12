@@ -1,17 +1,18 @@
 document.addEventListener('alpine:init', () => {
     Alpine.data('products', () => ({
-        items: [],
+        items : [
+            {id: 1, name: 'Me Udon', img: '1.jpg', price: 25000},
+            {id: 2, name: 'Me Ramen', img: '2.jpg', price: 25000},
+            {id: 3, name: 'Me Pho Bo', img: '3.jpg', price: 20000},
+            {id: 4, name: 'Me Spaghetti', img: '4.jpg', price: 50000},
+            {id: 5, name: 'Me Goreng Pedas', img: '5.jpg', price: 15000},
+        ],
         loadData() {
-            this.items = [
-                {id: 1, name: 'Me Udon', img: '1.jpg', price: 25000},
-                {id: 2, name: 'Me Ramen ', img: '2.jpg', price: 25000},
-                {id: 3, name: 'Me Pho Bo', img: '3.jpg', price: 20000},
-                {id: 4, name: 'Me Spaghetti', img: '4.jpg', price: 50000},
-                {id: 5, name: 'Me Goreng Pedas', img: '5.jpg', price: 15000},
-            ];
-        },
-    }));
-    
+            // Misalnya jika data diambil dari API, bisa ditambahkan di sini
+            console.log('Data loaded');
+        }
+}));
+
 
     Alpine.store('cart',{
         items: [],
