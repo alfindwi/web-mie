@@ -10,6 +10,13 @@ document.querySelector('#menu').onclick = () => {
 const searchForm = document.querySelector(".search-form");
 const searchBox = document.querySelector('#search-box');
 
+// shopping cart
+const shoppingCart = document.querySelector(".shopping-cart");
+document.querySelector('#shopping-cart-button').onclick = (e) => {
+    shoppingCart.classList.toggle('active');
+    e.preventDefault();
+};
+
 document.querySelector('#search-button').onclick = (e) => {
     searchForm.classList.toggle('active');
     searchBox.focus();
@@ -38,11 +45,9 @@ document.addEventListener('click', function(e){
 const itemDetailModal = document.querySelector('#item-detail-modal');
 const itemDetailButtons = document.querySelectorAll('.item-detail-button');
 
-itemDetailButtons.forEach((btn) => {
-    btn.onclick = (e) => {
-        itemDetailModal.style.display = 'flex';
-        e.preventDefault();
-    };
+itemDetailButtons.onclick((e) => {
+    itemDetailButtons.style.display = 'flex';
+    e.preventDefault();
 })
 
 

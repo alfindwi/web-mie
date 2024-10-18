@@ -34,7 +34,7 @@
 </head>
 <body>
     <!-- navbar start -->
-    <nav class="navbar" > 
+    <nav class="navbar" x-data> 
         <a href="#" class="navbar-logo">me<span>noodle</span>.</a>
 
         <div class="navbar-nav">
@@ -47,6 +47,10 @@
 
         <div class="navbar-extra" x-data>
             <a href="#" id="search-button"><i data-feather="search"></i></a>
+            <a href="#" id="shopping-cart-button">
+                <i data-feather="shopping-cart"></i>
+                <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+            </a>
             <a href="#" id="menu"><i data-feather="menu"></i></a>
         </div>
 
@@ -57,6 +61,49 @@
          </div>
         <!-- search form end -->
 
+        <!-- shopping cart -->
+
+        <div class="shopping-cart">
+            <template x-for="(item, index) in $store.cart.items" x-key="index">
+            <div class="cart-item">
+                <img :src="`/img/product/${item.img}`" :alt="item.name">
+                <div class="item-detail">
+                    <h3 x-text="item.name"></h3>
+                    <div class="item-price">
+                        <span x-text="(item.price)"></span> &times;
+                        <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+                        <span x-text="item.quantity"></span>
+                        <button id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+                        <span x-text="item.total"></span>
+                    </div>
+                </div>
+            </div>
+            </template>
+            <h4 x-show="!$store.cart.items.length">Cart Empty</h4>
+            <h4 x-show="$store.cart.items.length">Total: <span x-text="$store.cart.total"></span></h4>
+            <div class="form-container">
+                <form action="" id="checkoutForm">
+                    <h5>Customer Details</h5>
+    
+                    <label for="name">
+                        <span>Name</span>
+                        <input type="text" name="name" id="name">
+                    </label>
+                    <label for="email">
+                        <span>Email</span>
+                        <input type="email" name="email" id="email">
+                    </label>
+                    <label for="phone">
+                        <span>Phone</span>
+                        <input type="number" name="phone" id="phone" autocomplete="off">
+                    </label>
+    
+                    <button class="checkout-button" type="submit" id="checkout-button">Checkout</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- end shopping cart -->
     </nav>
     <!-- navbar end --> 
 
@@ -65,7 +112,7 @@
         <main class="content">
             <h1>Mari Nikmati Semangkok <span> menoodle</span></h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, est.</p>
-            <a href="" class="cta">Beli Sekarang</a>
+            <a href="#products" class="cta">Beli Sekarang</a>
         </main>
      </section>
 
@@ -125,7 +172,7 @@
     <!-- menu section end-->
 
     <!-- product section start  -->
-    <!-- <section class="products" id="products" x-data="products" x-init="console.log('Data ready')">
+    <section class="products" id="products" x-data="products">
         <h2><span>Mie Unggulan</span> Kami</h2>
         <p>Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Vitae voluptatum alias cumque amet, aliquid accusantium.</p>
@@ -201,7 +248,7 @@
             </div>
             </template>
         </div>
-     </section> -->
+     </section>
     <!-- product section end  -->
 
 
@@ -254,7 +301,7 @@
         </div>
 
         <div class="credit">
-            <p>Created by <a href="">alfindwi</a>
+            <p>Created by <span style="color: black; font-weight: bold;">alfindwi</span>
             . | &copy; 2023.</p>
         </div>
      </footer>
@@ -294,6 +341,9 @@
 
     <!-- my js -->
     <script src="js/script.js"></script>
+
+    <script src="//unpkg.com/alpinejs"></script>
+
 
 </body>
 </html>
